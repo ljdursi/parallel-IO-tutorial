@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<adios-config host-language="C">
+
+    <adios-group name="ArrayData" coordination-communicator="comm">
+        <var name="rundata->localnx"  type="integer" />
+        <var name="rundata->localny"  type="integer" />
+        <var name="rundata->globalnx" type="integer" />
+        <var name="rundata->globalny" type="integer" />
+        <var name="rundata->startx"   type="integer" />
+        <var name="rundata->starty"   type="integer" />
+        <var name="size" type="integer" />
+        <global-bounds dimensions="2,rundata->globalnx,rundata->globalny" offsets="0,rundata->startx,rundata->starty">
+           <var name="vel" gwrite="vel[0][0]" type="double" dimensions="2,rundata->localnx,rundata->localny" />
+        </global-bounds>
+        <global-bounds dimensions="rundata->globalnx,rundata->globalny" offsets="rundata->startx,rundata->starty">
+           <var name="dens" gwrite="dens[0]" type="double" dimensions="rundata->localnx,rundata->localny" />
+        </global-bounds>
+    </adios-group>
+
+<method group="ArrayData" method="PHDF5" />
+
+<buffer size-MB="2" allocate-time="now"/>
+
+</adios-config>
+

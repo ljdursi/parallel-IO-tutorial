@@ -1,0 +1,3 @@
+#!/scinet/gpc/Applications6/gnuplot/bin/gnuplot -persist
+plot 'sine.dat' binary format="%float32" using 1
+

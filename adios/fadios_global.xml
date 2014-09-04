@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<adios-config host-language="Fortran">
+
+    <adios-group name="ArrayData" coordination-communicator="comm">
+        <var name="rundata%localnx" type="integer" />
+        <var name="rundata%localny" type="integer" />
+        <var name="rundata%globalnx" type="integer" />
+        <var name="rundata%globalny" type="integer" />
+        <var name="rundata%startx" type="integer" />
+        <var name="rundata%starty" type="integer" />
+        <var name="comsize" type="integer" />
+        <global-bounds dimensions="rundata%globalny,rundata%globalnx,2" offsets="rundata%starty,rundata%startx,0">
+           <var name="vel" gwrite="vel" type="double" dimensions="rundata%localny,rundata%localnx,2" />
+        </global-bounds>
+        <global-bounds dimensions="rundata%globalny,rundata%globalnx" offsets="rundata%starty,rundata%startx">
+           <var name="dens" gwrite="dens" type="double" dimensions="rundata%localny,rundata%localnx" />
+        </global-bounds>
+        <attribute name="description" path="/Array" value="Global array written from 'comsize' processes" type="string"/>
+    </adios-group>
+
+<method group="ArrayData" method="PHDF5" />
+
+<buffer size-MB="2" allocate-time="now"/>
+
+</adios-config>
+
