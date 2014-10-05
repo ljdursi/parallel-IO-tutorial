@@ -19,7 +19,7 @@
 to store it:
 
 
-![Getting metter](images/Data_getting_3.png)
+![Getting metter](images2/Data_getting_3.png)
 
 __Economist, 27 Feb 2010__
 
@@ -30,9 +30,9 @@ __Economist, 27 Feb 2010__
 *  MIPS data fromWikipedia,"Instructions per Second".
 
 
-![Disk slower](images/Disks_slower1_4.png)
+![Disk slower](images2/Disks_slower1_4.png)
 
-![Disk slower](images/Disks_slower2_4.png)
+![Disk slower](images2/Disks_slower2_4.png)
 
 ##Understanding storage performance
 
@@ -81,20 +81,20 @@ SSD:
 * Serialize I/O - huge bottleneck.
 
 
-![Planing IO 10](images/planing_io10.png)
+![Planing IO 10](images2/planing_io10.png)
 
 * Parallel computation,several options. 
 * Each process writes a file, possibly to local disk.
 * Postpones the problem - how do you analyze, or restart with different # of procs?
 
-![Planing IO 11](images/planing_io11.png)
+![Planing IO 11](images2/planing_io11.png)
 
 * Parallel computation, several options.
 * We're going to learn to avoid doing this by using Parallel I/O
 * **Coordinated** single output of multiple processes.
 
 
-![Planing IO 12](images/planing_io12.png)
+![Planing IO 12](images2/planing_io12.png)
 
 ## Where, how you do I/O matters.
 
@@ -103,7 +103,7 @@ SSD:
 * You're not going to read GB/ TB of data yourself; don't bother trying.
 * Write in 1 chunk, rather than a few #s at a time.
 
-![IO Metter 13](images/iometter_13-1.png)
+![IO Metter 13](images2/iometter_13-1.png)
 
 Timing data: writing 128M double-precision numbers
 
@@ -113,7 +113,7 @@ Timing data: writing 128M double-precision numbers
 * opening/closing
 * Seeks - 3-15ms - enough time to read 0.75 MB!
 
-![IO Metter 14](images/iometter_14.png)
+![IO Metter 14](images2/iometter_14.png)
 
 Timing data: reading 128M double-precision numbers
 
@@ -122,7 +122,7 @@ Timing data: reading 128M double-precision numbers
 * Where possible, read in contiguous large chunks, do random access in memory 
 * Much better if you use most of data read in
 
-![IO Metter 15](images/io_metter_15.png)
+![IO Metter 15](images2/io_metter_15.png)
 
 ## Parallel I/O and large file systems
 
@@ -133,7 +133,7 @@ Timing data: reading 128M double-precision numbers
 
 __SciNet ~2k drives__
 
-![File system 16](images/file_system_16.png)
+![File system 16](images2/file_system_16.png)
 
 
 ## SciNet's File Systems
@@ -146,7 +146,7 @@ __SciNet ~2k drives__
 * Data to compute nodes via IB
 
 
-![File system 16](images/file_system_17.png)
+![File system 16](images2/file_system_17.png)
 
 
 * Designed for HPC workloads
@@ -176,7 +176,7 @@ SciNet GPFS |  5000            |  30000
 * Parallel FS can help with big data in two ways
 
 
-![iometter 20](images/iometter_20.png)
+![iometter 20](images2/iometter_20.png)
 
 ## Striping data across disks
 
@@ -185,7 +185,7 @@ SciNet GPFS |  5000            |  30000
 * One drive can be finding next block while another is sending current block
 
 
-![Striping 21](images/StripingData_21.png)
+![Striping 21](images2/StripingData_21.png)
 
 ## Parallel operations on separate data
 
@@ -193,14 +193,14 @@ SciNet GPFS |  5000            |  30000
 * multiple clients doing independent work
 * Easy parallelism (good for lots of small data) - process many small files separately
 
-![Parallel 22](images/parallel_22.png)
+![Parallel 22](images2/parallel_22.png)
 
 * Or can do truly parallel operations
 * multiple clients doing independent work
 * Easy parallelism (good for lots of small data) - process many small files separately
 * Harder parallelism - each does part of a larger analysis job on a big file.
 
-![Parallel 22](images/parallel_23.png)
+![Parallel 22](images2/parallel_23.png)
 
 
 ## Data files must take advantage of parallel I/O
@@ -210,7 +210,7 @@ SciNet GPFS |  5000            |  30000
 * HDF5, NetCDF formats typical examples for scientific data
 
 
-![Parallel 22](images/DataNode_24.png)
+![Parallel 22](images2/DataNode_24.png)
 
 
 **Disk: (HDF5, NetCDF, pVTK..)**
@@ -224,7 +224,7 @@ SciNet GPFS |  5000            |  30000
 * Big data - formats matter
 
 
-![Parallel 22](images/Theseformats_25.png)
+![Parallel 22](images2/Theseformats_25.png)
 
 
 ```
@@ -251,10 +251,10 @@ variables:
 * Makes (some) IOPS even more expensive
 
 
-![Parallel 22](images/Lockunit_26.png)
+![Parallel 22](images2/Lockunit_26.png)
 
 
-![Parallel 22](images/application_27.png)
+![Parallel 22](images2/application_27.png)
 
 ## Abstraction Layers
 
@@ -265,7 +265,7 @@ variables:
 	* Data Sieving
 	* 2-phase I/O
 
-![Parallel 22](images/application_28.png)
+![Parallel 22](images2/application_28.png)
 
 
 ## Data Sieving
@@ -276,7 +276,7 @@ variables:
 * Reduces IOPS, makes use of high bandwidth for sequential IO
 
 
-![Parallel 22](images/DataSieving_29.png)
+![Parallel 22](images2/DataSieving_29.png)
 
 ## Two-Phase IO
 
@@ -287,7 +287,7 @@ variables:
 * Network communication usually faster
 
 
-![Parallel 22](images/2phseIO_30.Png)
+![Parallel 22](images2/2phseIO_30.Png)
 
 ## MPI-IO
 
@@ -298,7 +298,7 @@ variables:
 * Really only widelyavailable scientific computing parallel I/O middleware
 
 
-![Parallel 22](images/mpi2_31.png)
+![Parallel 22](images2/mpi2_31.png)
 
 
 ```
@@ -394,7 +394,7 @@ end program MPIIO_helloworld
 mpiexec -n 4 ./helloworldc
 ```
 
-![MPI-IO HELLO WORLD-35](images/hello_35.png)
+![MPI-IO HELLO WORLD-35](images2/hello_35.png)
 
 
 ```
@@ -404,7 +404,7 @@ else !
  strcpy (message, "World!");!
 ```
 
-![hello_36](images/hello_36.png)
+![hello_36](images2/hello_36.png)
 
 ``
 MPI_File_open(MPI_COMM_WORLD,"helloworld.txt",MPI_MODE_CREATE|MPI_MODE_WRONLY,!
@@ -412,19 +412,19 @@ MPI_INFO_NULL, &file);
 ``
 
 
-![hello_37](images/hello_37.png)
+![hello_37](images2/hello_37.png)
 
 ```
 offset = (msgsize*rank);!
 !
 MPI_File_seek(file, offset, MPI_SEEK_SET);!
 ```
-![hello_38](images/hello_38.png)
+![hello_38](images2/hello_38.png)
 ```
 MPI_File_write(file, message, msgsize, MPI_CHAR, &status);!
 ```
 
-![hello_39](images/hello_39.png)
+![hello_39](images2/hello_39.png)
 
 
 ```
@@ -432,7 +432,7 @@ MPI_File_close(&file);
 ```
 
 
-![hello_40](images/hello_40.png)
+![hello_40](images2/hello_40.png)
 
 
  **Usual MPI startup/teardown boilerplate**
@@ -575,7 +575,7 @@ int MPI_File_write(MPI_File fh, void *buf, int count, MPI_Datatype datatype, MPI
 	* "Send" in units of that type. 
 *  Noncontiguous data in memory is written out contiguously to the file, starting at the current (local) file pointer.
 
-![MPIFile_48](images/MPIFile_48.png)
+![MPIFile_48](images2/MPIFile_48.png)
 ```
 call MPI_Type_vector(count, blocklen, stride, MPI_CHARACTER, !
 everyother, ierr)!
@@ -618,7 +618,7 @@ call MPI_File_close(fileno, ierr)
 	* Could do this with POSIX I/O.
 
 
-![Parallel 22](images/Seek+Write_50.png)
+![Parallel 22](images2/Seek+Write_50.png)
 
 
 ## MPI\_File\_write\_at:
@@ -676,7 +676,7 @@ integer :: ierr)
 
 
 
-![Parallel 22](images/Write_53.png)
+![Parallel 22](images2/Write_53.png)
 
 ## MPI\_File\_write\_at\_all:
 
@@ -736,7 +736,7 @@ integer :: ierr)
 - All processors participate.
 - Higher order optimizations possible.
 
-![Parallel 22](images/Write_at_all_56.png)
+![Parallel 22](images2/Write_at_all_56.png)
 
 ##Non-contiguous in file
 
@@ -744,7 +744,7 @@ integer :: ierr)
 - (eg, an image, or a complete checkpoint of a 2d domain).
 - Would have to do repeated seeks, writing out one row at a time... 
 
-![Non-contiguous_in_file-55](images/Non-contiguous_in_file-55.png)
+![Non-contiguous_in_file-55](images2/Non-contiguous_in_file-55.png)
 
 ##MPI-IO File View
 
@@ -762,7 +762,7 @@ integer :: ierr)
 	
 	MPI\_Info info)			/** MPI\_INFO\_NULL * */
 
-![Parallel 22](images/MPI-IO_File_View-57.png)
+![Parallel 22](images2/MPI-IO_File_View-57.png)
 
 - int MPI\_File\_set\_view(
 	MPI\_File fh,
@@ -777,7 +777,7 @@ integer :: ierr)
 
 	MPI\_Info info)			/** MPI\_INFO\_NULL * */
 
-![Parallel 22](images/MPI-IO_File_View-56.png)
+![Parallel 22](images2/MPI-IO_File_View-56.png)
 
 ##MPI-IO File Write
 
@@ -795,7 +795,7 @@ Writes (_all: collectively) to part of file **within view.**
 - (Otherwise, need vectors of vectors of vectors...) 
 - Here - starts = [0,0], subsizes=[5,5], sizes=[10,10].
 
-![MPI_Type_create_subarray-57](images/MPI_Type_create_subarray-57.png)
+![MPI_Type_create_subarray-57](images2/MPI_Type_create_subarray-57.png)
 
 ```
 	  int MPI_Type_create_subarray(
@@ -859,7 +859,7 @@ $ ls *.nc
 $ ../plots.py *.nc
 ```
 
-![Sample_Code-58](images/Sample_Code-58.png)
+![Sample_Code-58](images2/Sample_Code-58.png)
 
 
 ```
@@ -889,7 +889,7 @@ variables:
 double Density(Y, X) ;
 double Velocity(Y, X, velocity\	components) ;
 ```
-![Sample_Code-58](images/Sample_Code-58.png)
+![Sample_Code-58](images2/Sample_Code-58.png)
 
 
 ##NetCDF
@@ -901,7 +901,7 @@ double Velocity(Y, X, velocity\	components) ;
 - way of storing and accessing large arrays (eg, for scientific data)
 - Current version is NetCDF4
 
-![Sample_Code-58](images/Sample_Code-58.png)
+![Sample_Code-58](images2/Sample_Code-58.png)
 ```
 $ ncdump -h data-simple-fort.nc 
 netcdf data-simple-fort {
@@ -919,7 +919,7 @@ double Velocity(Y, X, velocity\components) ;
 - Binary files, but common output format so that different sorts of machines can share files. 
 - Libraries accessible from C, C++,Fortran-77, Fortran 90/95/2003,python, etc. 
 
-![Sample_Code-58](images/Sample_Code-58.png)
+![Sample_Code-58](images2/Sample_Code-58.png)
 ```
 $ ncdump -h data-simple-fort.nc 
 netcdf data-simple-fort {
@@ -942,7 +942,7 @@ describe the big data
 	- *shared* dimensions - information about how the arrays relate
 	- Other, related information
 	
-![Parallel 22](images/Sample_Code-58.png)
+![Parallel 22](images2/Sample_Code-58.png)
 ```
 $ ncdump -h data-simple-fort.nc 
 netcdf data-simple-fort {
@@ -962,7 +962,7 @@ double Velocity(Y, X, velocity\components) ;
 - API, data format makes it easy to efficiently read,write subregions of arrays (slices, or `hyperslabs')
 - Still possible to make things slow - lots of metadata queries, modifications
 
-![Sample_Code-58](images/Sample_Code-58.png)
+![Sample_Code-58](images2/Sample_Code-58.png)
 ```
 		$ ncdump -h data-simple-fort.nc 
 		netcdf data-simple-fort {
@@ -1037,7 +1037,7 @@ if (status /= NF90_NOERR) then
 	- **Close file**
 
 
-![Sample_Code-58](images/Sample_Code-58.png)
+![Sample_Code-58](images2/Sample_Code-58.png)
 
 ```	
 $ ncdump -h data-simple-fort.nc 
@@ -1105,7 +1105,7 @@ status = nf90_close(file_id)
 	- **Read variables**
 	- **Close file**
 		
-![Sample_Code-58](images/Sample_Code-58.png)
+![Sample_Code-58](images2/Sample_Code-58.png)
 
 ```
 	$ ncdump -h data-simple-fort.nc 
@@ -1217,7 +1217,7 @@ nc_put_att_text(file_id, ycoord_id, "units", strlen(coordunit), coordunit);
 ```
 
 
-![A_Better_Example_59](images/A_Better_Example_59.png)
+![A_Better_Example_59](images2/A_Better_Example_59.png)
 
 ```
 float *x, *y;! 
@@ -1251,7 +1251,7 @@ nc_put_att_text(file_id, ycoord_id, "units", strlen(coordunit), coordunit);
 - Stored in header information (not with big data)
 - Don't put large arrays in there
 
-![NetCDF_Attributes_60](images/NetCDF_Attributes_60.png)
+![NetCDF_Attributes_60](images2/NetCDF_Attributes_60.png)
 
 
 - Units are particularly useful attributes, as if a code needs data in some other units (MKS), can convert.
